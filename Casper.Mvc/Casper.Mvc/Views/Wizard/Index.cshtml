@@ -1,0 +1,22 @@
+﻿@model WizardViewModel
+
+@{ ViewBag.Title = "Wizard Step: " + Model.Id;}
+
+<h2>Step - @Model.Id</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(w=>w.Id)
+    @Html.HiddenFor(w => w.Question)
+
+    <div class="form-group">
+        <label for="Answer">@Model.Question</label>
+        @Html.TextBoxFor(w=>w.Answer, new { @class="form-control"})
+    </div>
+
+    @Html.ValidationSummary()
+        
+    <div>
+        <button type="submit" class="btn btn-primary btn-lg">Next</button>
+    </div>
+}
