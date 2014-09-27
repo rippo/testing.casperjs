@@ -1,3 +1,32 @@
 ﻿@{ViewBag.Title = "Evaluate";}
 
-<h1>Evaluate</h1>
+
+<div class="row">
+
+    <div class="col-md-12">
+        <h1>Evaluate</h1>
+
+        <select id="CountryList">
+            <option id=""> ** SELECT **</option>
+            <option id="UK">United Kingdom</option>
+            <option id="US">United States</option>
+            <option id="ES">Spain</option>
+            <option id="FR">France</option>
+        </select>
+
+        <h2 id="SelectedCountry"></h2>
+
+    </div>
+</div>
+
+
+@section scripts {
+    <script>
+        $(function () {
+            $('#CountryList').on("change", function () {
+                $('#SelectedCountry')
+                    .html("Selected country code: " + $(this).find('option:selected').attr('id'));
+            });
+        })
+    </script>
+}

@@ -13,6 +13,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Casper Tests", "Casper Test
 		..\Tests\test03.js = ..\Tests\test03.js
 		..\Tests\test04.js = ..\Tests\test04.js
 		..\Tests\test05.js = ..\Tests\test05.js
+		..\Tests\test06.js = ..\Tests\test06.js
 	EndProjectSection
 EndProject
 Global
