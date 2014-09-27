@@ -7,7 +7,7 @@ casper.test.begin('Evaluate tests', 1, function (test) {
     });
 
     casper.then(function () {
-        test.assertTextExists("Selected country code: UK", "Selected country code: UK text exsists");
+        test.assertTextExists("Selected country code: UK", "Selected country code: UK text exists");
     });
 
     casper.run(function () { test.done(); });
