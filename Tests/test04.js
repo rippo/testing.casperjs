@@ -1,5 +1,5 @@
 //Looping
-casper.test.begin('Wizard', 101, function suite(test) {
+casper.test.begin('Wizard', 101, function (test) {
 
     //initial 50 loops
     var loop = new Array();
@@ -10,17 +10,17 @@ casper.test.begin('Wizard', 101, function suite(test) {
     casper.start("http://localhost:43502/wizard/index/1");
 
     //notice loop forEach is inside a casper function...
-    casper.then(function() {
+    casper.then(function () {
 
-        loop.forEach(function(item) {
+        loop.forEach(function (item) {
 
             //All tests must be inside a casper function
-            casper.then(function() {
+            casper.then(function () {
                 test.assertTitle("Wizard Step: " + item + " - CasperJS Mvc", "Title for wizard step " + item + " is the one expected");
             });
 
-            casper.then(function() {
-                this.fillSelectors('form', { }, true);
+            casper.then(function () {
+                this.fillSelectors('form', {}, true);
             });
 
             casper.then(function () {
@@ -34,7 +34,7 @@ casper.test.begin('Wizard', 101, function suite(test) {
 
     });
 
-    casper.then(function() {
+    casper.then(function () {
         test.assertTitle("Finished - CasperJS Mvc", "Finished title is the one expected");
     });
 

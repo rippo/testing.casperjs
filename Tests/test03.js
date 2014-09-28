@@ -1,4 +1,4 @@
-casper.test.begin('Contact Page', 5, function suite(test) {
+casper.test.begin('Contact Page', 5, function (test) {
 
     casper.start("http://localhost:43502/home/contact", function () {
         test.assertTitle("Contact - CasperJS Mvc", "Title for home page is the one expected");
