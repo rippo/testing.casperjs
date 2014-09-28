@@ -53,3 +53,16 @@ input[type="checkbox"].input-validation-error {
 .validation-summary-valid {
     display: none;
 }
+
+.imgbg {
+    background-color: #42413D;
+    min-height: 120px;
+    line-height: 120px;
+    -moz-border-radius: 15px;
+    -ms-border-radius: 15px;
+    border-radius: 15px;
+}
+
+    .imgbg img {
+        vertical-align: middle;
+    }
