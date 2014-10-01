@@ -13,7 +13,8 @@
         font-family: 'Yanone Kaffeesatz';
         font-weight: normal;
       }
-      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; font-size: 0.80em; }
+      .remark-slide-content { padding: 0.5em 3em 0.5em 3em;}
     </style>
   </head>
   <body>
@@ -21,19 +22,33 @@
 
 class: center, middle
 
-# Why test the UI? 
-##(end-to-end testing)
+# Richard Wilde 
+## @rippo
 
 ---
 
+class: center, middle
+
+# Why test the UI? 
+## (end-to-end testing)
+
+---
+
+# What is PhantomJS?
+
+PhantomJS is a headless WebKit scriptable with a JavaScript API. It has fast and native support for various web standards: DOM handling, CSS selector, JSON, Canvas, and SVG.
+
+* Full web stack
+* No browser required
 
 # What is CasperJS?
 
 CasperJS is a navigation scripting & testing utility written in Javascript that depends on PhantomJS a headless browser. CasperJS eases the process of defining a full navigation scenario and provides useful high-level functions, methods & syntactic sugar for doing common tasks such as:
 
----
+* testing your ui
+* screen scraping including screen grabs
 
-# What is PhantomJS?
+
 
 ---
 
@@ -44,9 +59,9 @@ CasperJS is a navigation scripting & testing utility written in Javascript that 
 3. Test 1 - First test
 4. Test 2 - Navigation
 5. Test 3 - Fill in a form
-6. Test 4 - Looping
-7. Test 5 - Waiting for the UI
-8. Test 6 - Evaluate 
+6. Test 4 - Waiting for the UI
+7. Test 5 - Evaluate 
+8. Test 6 - Looping
 
 ---
 
@@ -100,6 +115,10 @@ Now run:-
 $ casperjs grab.js
 ````
 
+````bat
+Home | CraftyCoders
+CraftyCoders (Bromsgrove, England) - Meetup
+````
 Was a file called `crafty.jpg` created?
 
 ---
@@ -122,11 +141,12 @@ Was a file called `crafty.jpg` created?
 
 * we executed the whole process
 
+### How I found this useful...
 ---
 
 #Exercise 2 - Our first test
 
-Start the Visual Studio MVC project, then create a new file called test01.js
+Start the Visual Studio MVC project, then create a new file in your folder called `test01.js`
 
 
 ````javascript
@@ -189,9 +209,10 @@ You should get 3 passing tests
 
 ---
 
+
 #Exercise 3 - Navigation test
 
-Create a new file called test02.js
+Create a new file called `test02.js`
 
 ````javascript
 casper.test.begin('Home and About Page', 4, function (test) {
@@ -220,11 +241,81 @@ $ casperjs test test02.js
 
 You should get 4 passing tests
 
+---
+
+#Exercise 4 - Fill in a form
+
+Copy `\_test_template.js` and rename to `test03.js`, we want to test the contact form:-
+
+* assert the title is correct
+* assert the form exists
+* submit the form with just the name filled in
+* assert an error comes back
+* submit the form with an invalid email address
+* assert an error comes back
+* submit the form with an valid email address
+* assert we are showing the thank you page
+
+
+````javascript
+test.assertTitle("Contact - CasperJS Mvc");
+
+test.assertExists('form[action="/home/contact"]');
+
+this.fillSelectors('form', {
+    "input[name='ContactName']": 'Richard Wilde',
+}, true);
+
+casper.waitForUrl(/home\/contact/, ... 
+
+test.assertTextExists("..." 
+
+casper.waitForUrl(/home\/thanks/, function () {
+
+test.assertTextExists("Thanks", "Thanks header is shown");
+````
+
+---
+
+#Exercise 5 - UI Timings
+
+Copy `\_test_template.js` and rename to `test04.js`, we want to test the modal window:-
+
+---
+
+#Exercise 6 - Evaulate
+
+Copy `\_test_template.js` and rename to `test05.js`, we want to test the modal window:-
+
+---
+
+#Exercise 7 - Looping
+
+Copy `\_test_template.js` and rename to `test06.js`, we want to test the wizard:-
+
+---
+
+
+#Check out these tools
+
+* Resurretco
+
+* CasperJS IDE
+
+---
+
+class: center, middle
+
+#Thanks
+
+##Hope you found it useful
+
+Ask me questions on twitter @rippo
     </textarea>
     <script src="http://gnab.github.io/remark/downloads/remark-latest.min.js" type="text/javascript">
     </script>
     <script type="text/javascript">
-      var slideshow = remark.create();
+      var slideshow = remark.create({  highlightStyle: 'monokai'});
     </script>
   </body>
 </html>
