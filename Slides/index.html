@@ -28,6 +28,8 @@ class: center, middle
 # Richard Wilde 
 ## @rippo
 
+View slides at http://ow.ly/CgTDR
+
 ---
 
 class: center, middle
@@ -46,12 +48,10 @@ PhantomJS is a headless WebKit scriptable with a JavaScript API. It has fast and
 
 # What is CasperJS?
 
-CasperJS is a navigation scripting & testing utility written in Javascript that depends on PhantomJS a headless browser. CasperJS eases the process of defining a full navigation scenario and provides useful high-level functions, methods & syntactic sugar for doing common tasks such as:
+CasperJS is a navigation scripting & testing utility written in Javascript that depends on PhantomJS. CasperJS eases the process of defining a full navigation scenario and provides useful high-level functions, methods & syntactic sugar for doing common tasks such as:
 
 * testing your ui
 * screen scraping including screen grabs
-
-
 
 ---
 
@@ -72,25 +72,28 @@ CasperJS is a navigation scripting & testing utility written in Javascript that 
 
 1. Installing node http://nodejs.org/
 
-2. Installing PhantomJs
-````bat
-$ npm install phantomjs -g
-$ phantomjs -v
-````
-3. Installing CasperJS
+2. Open CMD prompt and install CasperJS (it bundles PhantomJs)
 ````bat
 $ npm install casperjs -g
+````
+
+3. Now type
+````bat
+notepad %APPDATA%\npm\casperjs.cmd
+````
+Goto http://ow.ly/CgT31 and paste in the text and save
+
+4. Check all is good, it should return `1.1.0-beta3`.
+````bat
 $ casperjs --version
 ````
-4. Get demo project from GitHub
+
+5. Get demo project from GitHub
 ````html
 https://github.com/rippo/testing.casperjs
 ````
 
-5. TWEAKS todo
-
-6. Open CMD prompt create a folder  
-
+6. In CMD create folder and CD to it (any name, any where like Martini but not)  
 ---
 
 #Exercise 1 - Screen Grab
