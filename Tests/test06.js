@@ -16,7 +16,7 @@ casper.test.begin('Wizard', 101, function (test) {
 
             //All tests must be inside a casper function
             casper.then(function () {
-                test.assertTitle("Wizard Step: " + item + " - CasperJS Mvc", "Title for wizard step " + item + " is the one expected");
+                test.assertTitle("Wizard Step: " + item + " - CasperJS Mvc");
             });
 
             casper.then(function () {

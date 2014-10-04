@@ -13,8 +13,11 @@
         font-family: 'Yanone Kaffeesatz';
         font-weight: normal;
       }
-      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; font-size: 0.80em; }
-      .remark-slide-content { padding: 0.5em 3em 0.5em 3em;}
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; font-size: 0.90em; }
+      .remark-slide-content {
+          /*padding: 0.5em 3em 0.5em 3em;*/
+          font-size: 18px;
+      }
     </style>
   </head>
   <body>
@@ -256,23 +259,20 @@ Copy `\_test_template.js` and rename to `test03.js`, we want to test the contact
 * submit the form with an valid email address
 * assert we are showing the thank you page
 
+### Spoiler alert...
 
 ````javascript
-test.assertTitle("Contact - CasperJS Mvc");
-
+// assert a selector exists
 test.assertExists('form[action="/home/contact"]');
 
+// fill in a form, note use fillSelectors NOT deprecated fill 
 this.fillSelectors('form', {
     "input[name='ContactName']": 'Richard Wilde',
 }, true);
 
+// waits for a url after a button has been clicked
 casper.waitForUrl(/home\/contact/, ... 
 
-test.assertTextExists("..." 
-
-casper.waitForUrl(/home\/thanks/, function () {
-
-test.assertTextExists("Thanks", "Thanks header is shown");
 ````
 
 ---
@@ -281,11 +281,41 @@ test.assertTextExists("Thanks", "Thanks header is shown");
 
 Copy `\_test_template.js` and rename to `test04.js`, we want to test the modal window:-
 
+* start with `casper.start('http://localhost:43502/Timings');`
+* assert button exists
+* click the button
+* capture the screen
+* assert modal window is visible
+
+### Spoiler alert...
+
+````javascript
+// does a selector exist?
+test.assertExists("button#btnModal", "Launch button is shown");
+
+// lets wait for some milliseconds...
+casper.wait(10, ...
+
+// is a selector visible?
+test.assertVisible("#myModal");
+````
+
 ---
 
-#Exercise 6 - Evaulate
+#Exercise 6 - Evaluate
 
 Copy `\_test_template.js` and rename to `test05.js`, we want to test the modal window:-
+
+* start with `http://localhost:43502/Evaluate`
+* change the dropdown list to United Kingdom
+* assert the text exists `Selected country code: UK`
+
+### Spoiler alert...
+
+````javascript
+// run some javacript/jquery code
+casper.thenEvaluate(...
+````
 
 ---
 
@@ -293,14 +323,36 @@ Copy `\_test_template.js` and rename to `test05.js`, we want to test the modal w
 
 Copy `\_test_template.js` and rename to `test06.js`, we want to test the wizard:-
 
+* set up an array of 50 integers
+* start with `http://localhost:43502/wizard/index/1`
+* loop through array
+   * assert title is `Wizard Step: **i** - CasperJS Mvc  
+   * submit form without filling in field
+   * assert validation message is shown
+   * submit form with any answer
+* assert finished page is shown
+
+### Spoiler alert...
+
+````javascript
+//  should the loop be inside a casper function?
+casper.then ...
+ loop.forEach(function (item) ...
+
+````
+
 ---
 
 
 #Check out these tools
 
-* Resurretco
+* Resurretco (chrome extension)
 
-* CasperJS IDE
+* CSS Selector Tester (chrome extension)
+
+* CasperJS IDE (online and desktop version)
+  *  Desktop version costs $9 
+
 
 ---
 
