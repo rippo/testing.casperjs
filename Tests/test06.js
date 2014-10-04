@@ -26,7 +26,7 @@ casper.test.begin('Wizard', 101, function (test) {
             casper.then(function () {
                 test.assertTextExists("The Answer field is required", "Validation error message is shown");
                 this.fillSelectors('form', {
-                    "input[name='Answer']": 'An answer',
+                    "input[name='Answer']": 'An answer'
                 }, true);
             });
 
@@ -35,7 +35,7 @@ casper.test.begin('Wizard', 101, function (test) {
     });
 
     casper.then(function () {
-        test.assertTitle("Finished - CasperJS Mvc", "Finished title is the one expected");
+        test.assertTitle("Finished - CasperJS Mvc");
     });
 
     casper.run(function () {

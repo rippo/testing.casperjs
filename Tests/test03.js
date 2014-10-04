@@ -5,7 +5,7 @@ casper.test.begin('Contact Page', 5, function (test) {
         test.assertExists('form[action="/home/contact"]');
 
         this.fillSelectors('form', {
-            "input[name='ContactName']": 'Richard Wilde',
+            "input[name='ContactName']": 'Richard Wilde'
         }, true);
 
     });
@@ -13,14 +13,14 @@ casper.test.begin('Contact Page', 5, function (test) {
     casper.waitForUrl(/home\/contact/, function () {
         test.assertTextExists("The Email Address field is required", "Email required required is shown");
         this.fillSelectors('form', {
-            "input[name='EmailAddress']": 'sss',
+            "input[name='EmailAddress']": 'sss'
         }, true);
     });
 
     casper.waitForUrl(/home\/contact/, function () {
         test.assertTextExists("The Email Address field is not a valid e-mail address", "Email not valid is shown");
         this.fillSelectors('form', {
-            "input[name='EmailAddress']": 'test@test.com',
+            "input[name='EmailAddress']": 'test@test.com'
         }, true);
     });
 

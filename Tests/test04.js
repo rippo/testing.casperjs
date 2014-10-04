@@ -9,7 +9,7 @@ casper.test.begin('Timings tests', 2, function (test) {
         this.click("button#btnModal");
     });
 
-    casper.wait(200, function () {
+    casper.wait(10, function () {
         this.capture("timings.jpg");
         test.assertVisible("#myModal");
     });

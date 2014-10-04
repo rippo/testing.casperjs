@@ -50,20 +50,27 @@ PhantomJS is a headless WebKit scriptable with a JavaScript API. It has fast and
 
 CasperJS is a navigation scripting & testing utility written in Javascript that depends on PhantomJS. CasperJS eases the process of defining a full navigation scenario and provides useful high-level functions, methods & syntactic sugar for doing common tasks such as:
 
-* testing your ui
-* screen scraping including screen grabs
+* Testing your ui
+* Screen scraping including screen grabs
 
 ---
 
 # Hands on Agenda
 
-1. Getting started
+1. Getting setup
+
 2. Screen grab demo
+
 3. Test 1 - First test
+
 4. Test 2 - Navigation
+
 5. Test 3 - Fill in a form
+
 6. Test 4 - Waiting for the UI
+
 7. Test 5 - Evaluate 
+
 8. Test 6 - Looping
 
 ---
@@ -79,21 +86,23 @@ $ npm install casperjs -g
 
 3. Now type
 ````bat
-notepad %APPDATA%\npm\casperjs.cmd
+$ notepad %APPDATA%\npm\casperjs.cmd
 ````
 Goto http://ow.ly/CgT31 and paste in the text and save
 
-4. Check all is good, it should return `1.1.0-beta3`.
+4. Check casper is installed, it should return `1.1.0-beta3`.
 ````bat
 $ casperjs --version
 ````
 
-5. Get demo project from GitHub
-````html
-https://github.com/rippo/testing.casperjs
+5. In CMD create folder and CD to it (any name, any where like Martini but not)
+
+6. Get demo project from GitHub
+````bat
+$ git clone https://github.com/rippo/testing.casperjs.git
 ````
 
-6. In CMD create folder and CD to it (any name, any where like Martini but not)  
+7. Open SLN `.\testing.casperjs\Casper.Mvc\Casper.Mvc.sln`, then hit CTRL + F5 
 ---
 
 #Exercise 1 - Screen Grab
@@ -137,11 +146,11 @@ Was a file called `crafty.jpg` created?
 
 * we started it and opened http://craftycoders.net
 
-* once the page has been loaded, we asked to print the title of that webpage (the content of its ````<title>```` tag)
+* once the page has loaded, we printed the title of the webpage (the content of its `<title>` tag)
 
 * then we opened another url, http://www.meetup.com/Crafty-Coders
 
-* once the new page has been loaded, we asked to print its title too
+* once the new page has loaded, we asked to print its title too
 
 * we then took a screen grab of the page
 
@@ -150,9 +159,9 @@ Was a file called `crafty.jpg` created?
 ### How I found this useful...
 ---
 
-#Exercise 2 - Our first test
+#Test 01 - Our first test
 
-Start the Visual Studio MVC project, then create a new file in your folder called `test01.js`
+Start the Visual Studio MVC project (CTRL + F5), then create a new file in your folder called `test01.js`
 
 
 ````javascript
@@ -180,17 +189,17 @@ You should get 3 passing tests
 
 ---
 
-#Exercise 2 - Our first test
+#Test 01 - Our first test
 
 ## What did we just do?##
 
-* notice test scripts are slightly different to scraping scripts
+* notice that the test scripts are slightly different to scraping scripts
 
 * we do not need to create a new casper instance (allows us to chain tests)
 
 * we opened http://localhost:43502
 
-* once the page has been loaded, we asserted the title was `Home - CasperJS Mvc`
+* when the page loaded, we asserted the title was `Home - CasperJS Mvc`
 
 * we then asserted that two pieces of text existed
 
@@ -198,25 +207,32 @@ You should get 3 passing tests
 
 ---
 
-#Exercise 3 - Navigation test
+#Test 02 - Navigation test
 
-* **CSS Selector Tester**
+## TIP for Chrome users
 
-    Test your css selector by using this quick script
+###CSS Selector Tester
 
-    [Css Selector Tester](https://chrome.google.com/webstore/detail/css-selector-tester/bbklnaodgoocmcdejoalmbjihhdkbfon)
+Test your css selector by using this quick script
 
-    On the home page try out 
+[Css Selector Tester](https://chrome.google.com/webstore/detail/css-selector-tester/bbklnaodgoocmcdejoalmbjihhdkbfon)
 
-    `````css
-    ul > li:nth-child(2) > a
-    `````
+On the home page try out 
 
+`````css
+ul > li:nth-child(2) > a
+`````
+
+OR
+
+````css
+a[href='/Home/About']
+````
 
 ---
 
 
-#Exercise 3 - Navigation test
+#Test 02 - Navigation test
 
 Create a new file called `test02.js`
 
@@ -249,9 +265,9 @@ You should get 4 passing tests
 
 ---
 
-#Exercise 4 - Fill in a form
+#Test 03 - Fill in a form
 
-Copy `\_test_template.js` and rename to `test03.js`, we want to test the contact form:-
+Copy `\_test_template.js` and rename to `test03.js`, we want 5 tests for the contact form:-
 
 * assert the title is correct
 * assert the form exists
@@ -270,7 +286,7 @@ test.assertExists('form[action="/home/contact"]');
 
 // fill in a form, note use fillSelectors NOT deprecated fill 
 this.fillSelectors('form', {
-    "input[name='ContactName']": 'Richard Wilde',
+    "input[name='ContactName']": 'Richard Wilde'
 }, true);
 
 // waits for a url after a button has been clicked
@@ -280,7 +296,7 @@ casper.waitForUrl(/home\/contact/, ...
 
 ---
 
-#Exercise 5 - UI Timings
+#Test 04 - UI Timings
 
 Copy `\_test_template.js` and rename to `test04.js`, we want to test the modal window:-
 
@@ -305,7 +321,7 @@ test.assertVisible("#myModal");
 
 ---
 
-#Exercise 6 - Evaluate
+#Test 05 - Evaluate
 
 Copy `\_test_template.js` and rename to `test05.js`, we want to test the modal window:-
 
@@ -322,7 +338,7 @@ casper.thenEvaluate(...
 
 ---
 
-#Exercise 7 - Looping
+#Test 06 - Looping
 
 Copy `\_test_template.js` and rename to `test06.js`, we want to test the wizard:-
 
