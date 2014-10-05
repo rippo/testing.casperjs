@@ -1,4 +1,4 @@
-casper.test.begin('Evaluate tests', 1, function (test) {
+casper.test.begin('Evaluate tests', 2, function (test) {
 
     casper.start('http://localhost:43502/Evaluate');
 
@@ -8,6 +8,14 @@ casper.test.begin('Evaluate tests', 1, function (test) {
 
     casper.then(function () {
         test.assertTextExists("Selected country code: UK", "Selected country code: UK text exists");
+    });
+
+    casper.thenEvaluate(function () {
+        $('#CountryList').val('Spain').change();
+    });
+
+    casper.then(function () {
+        test.assertTextExists("Selected country code: ES", "Selected country code: ES text exists");
     });
 
     casper.run(function () { test.done(); });
