@@ -2,7 +2,7 @@
 casper.test.begin('Wizard', 101, function (test) {
 
     //initial 50 loops
-    var loop = new Array();
+    var loop = [];
     for (var i = 1; i <= 50; i++) {
         loop.push(i);
     }
