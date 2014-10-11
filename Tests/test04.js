@@ -9,10 +9,13 @@ casper.test.begin('Timings tests', 2, function (test) {
         this.click("button#btnModal");
     });
 
-    casper.wait(200, function () {
+    casper.wait(300, function () {
         this.capture("timings.jpg");
         test.assertVisible("#myModal");
     });
 
     casper.run(function () { test.done(); });
 });
+
+//Note we could use, waitUntilVisible why not try it? 
+//    casper.waitUntilVisible("#myModal", function () {
