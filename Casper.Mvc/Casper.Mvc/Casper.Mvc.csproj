@@ -111,6 +111,9 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Models\SearchViewModel.cs" />
+    <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Controllers\TimingsController.cs" />
     <Compile Include="Controllers\EvaluateController.cs" />
     <Compile Include="Controllers\WizardController.cs" />
@@ -165,6 +168,8 @@
     <Content Include="Views\Home\Thanks.cshtml" />
     <Content Include="Views\Timings\Index.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\Account\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

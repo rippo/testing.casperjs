@@ -1,0 +1,13 @@
+﻿@model LoginViewModel
+
+<h1>Login</h1>
+
+@using (Html.BeginForm())
+{
+
+    @Html.EditorFor(model => model, new { htmlAttributes = new { @class = "form-control" } })
+
+    <div class="form-group">
+        <input type="submit" value="Login" class="btn btn-primary" />
+    </div>
+}

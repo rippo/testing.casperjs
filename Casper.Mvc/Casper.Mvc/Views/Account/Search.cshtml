@@ -1,0 +1,10 @@
+﻿@model SearchViewModel
+
+<h2>Search</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(w=>w.Id)
+    @Html.EditorFor(model => model.Query, new { htmlAttributes = new { @class = "form-control", style="display:inline-block;" } })
+    <input type="submit" value="Go" class="btn btn-primary" />
+}
