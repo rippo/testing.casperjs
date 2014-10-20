@@ -4,7 +4,26 @@
 
 @using (Html.BeginForm())
 {
-    @Html.HiddenFor(w=>w.Id)
-    @Html.EditorFor(model => model.Query, new { htmlAttributes = new { @class = "form-control", style="display:inline-block;" } })
+    @Html.HiddenFor(w => w.Id)
+    @Html.EditorFor(model => model.Query, new { htmlAttributes = new { @class = "form-control", style = "display:inline-block;" } })
     <input type="submit" value="Go" class="btn btn-primary" />
+    @Html.ValidationMessageFor(w => w.Query)
+}
+
+@if (Model.Results.Any())
+{
+    <h2>Results</h2>
+    <table class="table table-bordered table-condensed table-hover table-striped">
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+        </tr>
+        @foreach (var item in Model.Results)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Name</td>
+            </tr>
+        }
+    </table>
 }

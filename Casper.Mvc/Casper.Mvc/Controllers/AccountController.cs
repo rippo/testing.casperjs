@@ -33,9 +33,10 @@ namespace Casper.Mvc.Controllers
             return View(model);
         }
 
-        public ActionResult Search()
+        public ActionResult Search(int id)
         {
-            return View();
+            var model = new SearchViewModel { Id = id };
+            return View(model);
         }
 
         [HttpPost]
@@ -43,7 +44,9 @@ namespace Casper.Mvc.Controllers
         {
             if (ModelState.IsValid)
             {
-                model.Results = TestData.Fill().Where(w => w.Name.Contains(model.Query)).ToList();
+                model.Results = TestData.Fill()
+                    .Where(w => w.Name.Contains(model.Query) && w.OwnerId == model.Id)
+                    .ToList();
             }
 
             return View(model);
