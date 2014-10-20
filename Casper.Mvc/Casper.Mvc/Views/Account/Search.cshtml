@@ -13,17 +13,21 @@
 @if (Model.Results.Any())
 {
     <h2>Results</h2>
-    <table class="table table-bordered table-condensed table-hover table-striped">
-        <tr>
-            <th>Id</th>
-            <th>Name</th>
-        </tr>
-        @foreach (var item in Model.Results)
-        {
+    <table id="results" class="table table-bordered table-condensed table-hover table-striped">
+        <thead>
             <tr>
-                <td>@item.Id</td>
-                <td>@item.Name</td>
+                <th>Id</th>
+                <th>Name</th>
             </tr>
-        }
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Results)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Name</td>
+                </tr>
+            }
+        </tbody>
     </table>
 }
