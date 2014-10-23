@@ -6,7 +6,7 @@ casper.test.begin('Home and About Page', 4, function (test) {
     });
 
     casper.thenClick('ul > li:nth-child(2) > a', function () {
-        test.assertUrlMatch(/Home\/About/, "URL ends with Home/About");
+        test.assertUrlMatch(/home\/about/, "URL ends with Home/About");
         test.assertTitle("About - CasperJS Mvc");
     });
 
