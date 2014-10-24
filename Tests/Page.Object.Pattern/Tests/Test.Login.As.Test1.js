@@ -1,5 +1,5 @@
-phantom.page.injectJs('../Pages/Page.Login.js');
-phantom.page.injectJs('../Pages/Page.Account.js');
+phantom.page.injectJs('./tests/Page.Object.Pattern/Pages/Page.Login.js');
+phantom.page.injectJs('./tests/Page.Object.Pattern/Pages/Page.Account.js');
 
 var loginPage = new LoginPage();
 var searchPage = new SearchPage();
