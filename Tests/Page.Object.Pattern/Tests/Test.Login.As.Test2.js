@@ -6,10 +6,7 @@ var searchPage = new SearchPage();
 
 casper.test.begin('when I login as test2', function (test) {
 
-    loginPage.startOnLoginPage();
-    loginPage.checkPage();
-    loginPage.fillForm('test2@test.com', '12345');
-    loginPage.submitForm();
+    loginPage.fullLogin('test2@test.com', '12345');
 
     searchPage.checkPage();
     searchPage.fillForm("a");

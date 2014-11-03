@@ -387,9 +387,16 @@ $ casperjs test ./tests/test.samples
 
 #If you have time
 
+##Check out the page object pattern...
+
 ````bat
 casperjs --baseUrl="http://localhost:43502" test ./tests/page.object.pattern/tests
 ````
+
+  - https://code.google.com/p/selenium/wiki/PageObjects
+  - http://martinfowler.com/bliki/PageObject.html
+ 
+``Within your web app's UI there are areas that your tests interact with. A Page Object simply models these as objects within the test code. This reduces the amount of duplicated code and means that if the UI changes, the fix need only be applied in one place``
 
 ---
 

@@ -5,6 +5,14 @@ function LoginPage() {
         casper.start(casper.cli.options.baseUrl + '/account');
     };
 
+    this.fullLogin = function(username, password) {
+        this.startOnLoginPage();
+        this.checkPage();
+        this.fillForm(username, password);
+        this.submitForm();
+    };
+
+
     this.checkPage = function () {
         casper.waitForSelector("#Username", function () {
             casper.test.assertUrlMatch('account', 'is on login page');
