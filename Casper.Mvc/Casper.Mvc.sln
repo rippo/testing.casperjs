@@ -8,12 +8,31 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Casper Tests", "Casper Tests", "{CB11A1FC-6540-43EF-B773-86AA9C06CDFE}"
 	ProjectSection(SolutionItems) = preProject
 		..\grab.js = ..\grab.js
-		..\Tests\test01.js = ..\Tests\test01.js
-		..\Tests\test02.js = ..\Tests\test02.js
-		..\Tests\test03.js = ..\Tests\test03.js
-		..\Tests\test04.js = ..\Tests\test04.js
-		..\Tests\test05.js = ..\Tests\test05.js
-		..\Tests\test06.js = ..\Tests\test06.js
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Page.Object.Pattern", "Page.Object.Pattern", "{8F3C5FEF-9962-4AA6-BD03-4361DC92E270}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Pages", "Pages", "{F78AA86B-F8CB-4E0A-A869-608331DCF91C}"
+	ProjectSection(SolutionItems) = preProject
+		..\Tests\Page.Object.Pattern\Pages\Page.Account.js = ..\Tests\Page.Object.Pattern\Pages\Page.Account.js
+		..\Tests\Page.Object.Pattern\Pages\Page.Login.js = ..\Tests\Page.Object.Pattern\Pages\Page.Login.js
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{C7C8F09E-B93A-4EF0-BCBB-FEBEE36F8F6F}"
+	ProjectSection(SolutionItems) = preProject
+		..\Tests\Page.Object.Pattern\Tests\Test.Login.As.Test1.js = ..\Tests\Page.Object.Pattern\Tests\Test.Login.As.Test1.js
+		..\Tests\Page.Object.Pattern\Tests\Test.Login.As.Test2.js = ..\Tests\Page.Object.Pattern\Tests\Test.Login.As.Test2.js
+		..\Tests\Page.Object.Pattern\Tests\Test.Login.As.Unknown.js = ..\Tests\Page.Object.Pattern\Tests\Test.Login.As.Unknown.js
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{DD0350E4-CF41-4702-976B-6BA63B407371}"
+	ProjectSection(SolutionItems) = preProject
+		..\Tests\Test.Samples\test01.js = ..\Tests\Test.Samples\test01.js
+		..\Tests\Test.Samples\test02.js = ..\Tests\Test.Samples\test02.js
+		..\Tests\Test.Samples\test03.js = ..\Tests\Test.Samples\test03.js
+		..\Tests\Test.Samples\test04.js = ..\Tests\Test.Samples\test04.js
+		..\Tests\Test.Samples\test05.js = ..\Tests\Test.Samples\test05.js
+		..\Tests\Test.Samples\test06.js = ..\Tests\Test.Samples\test06.js
 	EndProjectSection
 EndProject
 Global
@@ -29,5 +48,11 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8F3C5FEF-9962-4AA6-BD03-4361DC92E270} = {CB11A1FC-6540-43EF-B773-86AA9C06CDFE}
+		{F78AA86B-F8CB-4E0A-A869-608331DCF91C} = {8F3C5FEF-9962-4AA6-BD03-4361DC92E270}
+		{C7C8F09E-B93A-4EF0-BCBB-FEBEE36F8F6F} = {8F3C5FEF-9962-4AA6-BD03-4361DC92E270}
+		{DD0350E4-CF41-4702-976B-6BA63B407371} = {CB11A1FC-6540-43EF-B773-86AA9C06CDFE}
 	EndGlobalSection
 EndGlobal
