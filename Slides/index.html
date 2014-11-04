@@ -79,6 +79,8 @@ CasperJS is a navigation scripting & testing utility written in Javascript that 
 
 9. Review Page Objects (if time)
 
+When you get stuck check out the API documentation http://docs.casperjs.org/en/latest/modules/index.html
+
 ---
 
 # Getting setup
@@ -89,8 +91,6 @@ CasperJS is a navigation scripting & testing utility written in Javascript that 
 ````bat
 $ npm install casperjs -g
 ````
-
-3. Now type
 ````bat
 $ notepad %APPDATA%\npm\casperjs.cmd
 ````
@@ -108,7 +108,9 @@ $ casperjs --version
 $ git clone https://github.com/rippo/testing.casperjs.git
 ````
 
-7. Open SLN `.\testing.casperjs\Casper.Mvc\Casper.Mvc.sln`, RUN -> ***QUICK TOUR***
+7. Open SLN `.\testing.casperjs\Casper.Mvc\Casper.Mvc.sln`,
+
+        RUN -> ***QUICK TOUR***
 ---
 
 #Exercise 1 - Screen Grab
@@ -232,7 +234,7 @@ ul > li:nth-child(2) > a
 OR
 
 ````css
-a[href='/Home/About']
+a[href='/home/about']
 ````
 
 ---
@@ -251,7 +253,7 @@ casper.test.begin('Home and About Page', 4, function (test) {
   });
 
   casper.thenClick('ul > li:nth-child(2) > a', function () {
-      test.assertUrlMatch(/Home\/About/, "URL ends with Home/About");
+      test.assertUrlMatch(/home\/about/, "URL ends with home/about");
       test.assertTitle("About - CasperJS Mvc");
   });
 
@@ -275,6 +277,7 @@ You should get 4 passing tests
 
 Copy `\_test_template.js` and rename to `test03.js`, we want 5 tests for the contact form:-
 
+* start with `casper.start('http://localhost:43502/home/contact');`
 * assert the title is correct
 * assert the form exists
 * submit the form with just the name filled in
@@ -284,7 +287,7 @@ Copy `\_test_template.js` and rename to `test03.js`, we want 5 tests for the con
 * submit the form with an valid email address
 * assert we are showing the thank you page
 
-### Spoiler alert...
+#### Spoiler alert...
 
 ````javascript
 // assert a selector exists
@@ -295,8 +298,8 @@ this.fillSelectors('form', {
     "input[name='ContactName']": 'Richard Wilde'
 }, true);
 
-// waits for a url after a button has been clicked
-casper.waitForUrl(/home\/contact/, ... 
+// waits for a selector after a button has been clicked
+casper.waitForSelector('#EmailAddress', ...
 
 ````
 
@@ -312,7 +315,7 @@ Copy `\_test_template.js` and rename to `test04.js`, we want to test the visibil
 * capture the screen
 * assert modal window is visible
 
-### Spoiler alert...
+#### Spoiler alert...
 
 ````javascript
 // does a selector exist?
@@ -337,7 +340,7 @@ Copy `\_test_template.js` and rename to `test05.js`, we want to test the modal w
 * change the dropdown list to `Spain`
 * assert the text exists `Selected country code: ES`
 
-### Spoiler alert...
+#### Spoiler alert...
 
 ````javascript
 // run some javacript/jquery code
@@ -361,7 +364,7 @@ Copy `\_test_template.js` and rename to `test06.js`, we want to test the wizard:
    * submit form with any answer
 * assert finished page is shown
 
-### Spoiler alert...
+#### Spoiler alert...
 
 ````javascript
 //  should the loop be inside a casper function?
