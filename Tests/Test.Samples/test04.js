@@ -2,7 +2,7 @@ casper.options.viewportSize = { width: 960, height: 600 };
 
 casper.test.begin('Timings tests', 2, function (test) {
 
-    casper.start('http://localhost:43502/Timings');
+    casper.start('http://localhost:43502/timings');
 
     casper.then(function () {
         test.assertExists("button#btnModal", "Launch button is shown");

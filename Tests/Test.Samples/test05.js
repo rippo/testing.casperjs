@@ -1,6 +1,6 @@
 casper.test.begin('Evaluate tests', 2, function (test) {
 
-    casper.start('http://localhost:43502/Evaluate');
+    casper.start('http://localhost:43502/evaluate');
 
     casper.thenEvaluate(function () {
         $('#CountryList').val('United Kingdom').change();

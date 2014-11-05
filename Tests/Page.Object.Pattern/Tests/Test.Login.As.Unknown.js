@@ -22,7 +22,6 @@ casper.test.begin('when I login as an unknown user', function (test) {
     loginPage.submitForm();
     loginPage.checkPage();
 
-
     casper.run(function () {
         test.done();
     });
