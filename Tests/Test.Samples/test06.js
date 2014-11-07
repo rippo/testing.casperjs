@@ -15,15 +15,12 @@ casper.test.begin('Wizard', 101, function (test) {
         loop.forEach(function (item) {
 
             //All tests must be inside a casper function
-            casper.then(function () {
+            casper.waitForSelector("input[name='Answer']", function () {
                 test.assertTitle("Wizard Step: " + item + " - CasperJS Mvc");
-            });
-
-            casper.then(function () {
                 this.fillSelectors('form', {}, true);
             });
 
-            casper.then(function () {
+            casper.waitForSelector("input[name='Answer']", function () {
                 test.assertTextExists("The Answer field is required", "Validation error message is shown");
                 this.fillSelectors('form', {
                     "input[name='Answer']": 'An answer'
@@ -34,7 +31,7 @@ casper.test.begin('Wizard', 101, function (test) {
 
     });
 
-    casper.then(function () {
+    casper.waitForUrl(/wizard\/finished/, function () {
         test.assertTitle("Finished - CasperJS Mvc");
     });
 
