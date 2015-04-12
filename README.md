@@ -1,4 +1,6 @@
-testing.casperjs
+Hand on CasperJs
 ================
 
-Simple MVC project and casper Testing
+Used for the hands on CasperJs testing
+
+View the slides at http://goo.gl/9XnmAL
