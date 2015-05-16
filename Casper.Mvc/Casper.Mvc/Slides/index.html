@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CasperJS - Hands On</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <style type="text/css">
+      @import url(http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(http://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(http://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; font-size: 0.90em; }
+      .remark-slide-content {
+          /*padding: 0.5em 3em 0.5em 3em;*/
+          font-size: 18px;
+      }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+class: center, middle
+
+# Richard Wilde 
+## @rippo
+
+View slides at http://tinyurl.com/slides-casper
+
+---
+
+class: center, middle
+
+# Why test the UI? 
+## (end-to-end testing)
+
+
+# What did I try? 
+## Selenuim, Web Driver, Coypu
+
+---
+
+# What is PhantomJS?
+
+PhantomJS is a headless WebKit scriptable with a JavaScript API. It has fast and native support for various web standards: DOM handling, CSS selector, JSON, Canvas, and SVG.
+
+* Full web stack
+* No browser required
+
+# What is CasperJS?
+
+CasperJS is a navigation scripting & testing utility written in Javascript that depends on PhantomJS. CasperJS eases the process of defining a full navigation scenario and provides useful high-level functions, methods & syntactic sugar for doing common tasks such as:
+
+* Testing your ui
+* Screen scraping including screen grabs
+
+---
+
+# Hands on Agenda
+
+1. Getting setup
+
+2. Screen grab demo
+
+3. Test 1 - First test
+
+4. Test 2 - Navigation
+
+5. Test 3 - Fill in a form
+
+6. Test 4 - Waiting for the UI
+
+7. Test 5 - Evaluate 
+
+8. Test 6 - Looping
+
+9. Review Page Objects (if time)
+
+When you get stuck check out the API documentation http://docs.casperjs.org/en/latest/modules/index.html
+
+---
+
+# Getting setup
+
+1. Installing node http://nodejs.org/
+
+2. Open CMD prompt and install CasperJS (it bundles PhantomJs)
+````bat
+$ npm install casperjs -g
+````
+````bat
+$ notepad %APPDATA%\npm\casperjs.cmd
+````
+Goto http://tinyurl.com/casper-cmd and paste in the text and save
+
+4. Check casper is installed, it should return `1.1.0-beta3`.
+````bat
+$ casperjs --version
+````
+
+5. In CMD create folder and CD to it (any name, any where like Martini but not)
+
+6. Get demo project from GitHub
+````bat
+$ git clone https://github.com/rippo/testing.casperjs.git
+````
+
+7. Open SLN `.\testing.casperjs\Casper.Mvc\Casper.Mvc.sln`,
+
+        RUN -> ***QUICK TOUR***
+---
+
+#Exercise 1 - Screen Grab
+
+Create a new file called grab.js
+
+````javascript
+var casper = require('casper').create();
+
+casper.start('http://craftycoders.net', function () {
+    this.echo(this.getTitle());
+});
+
+casper.thenOpen('http://www.meetup.com/Crafty-Coders', function () {
+    this.echo(this.getTitle());
+    this.capture("crafty.jpg");
+});
+
+casper.run();
+````
+
+Now run:-
+
+````bat
+$ casperjs grab.js
+````
+
+````bat
+Home | CraftyCoders
+CraftyCoders (Bromsgrove, England) - Meetup
+````
+Was a file called `crafty.jpg` created?
+
+---
+
+#Exercise 1 - Screen Grab
+
+## What did we just do?##
+
+* we created a new Casper instance
+
+* we started it and opened http://craftycoders.net
+
+* once the page has loaded, we printed the title of the webpage (the content of its `<title>` tag)
+
+* then we opened another url, http://www.meetup.com/Crafty-Coders
+
+* once the new page has loaded, we asked to print its title too
+
+* we then took a screen grab of the page
+
+* we executed the whole process
+
+### How I found this useful...
+---
+
+#Test 01 - Our first test
+
+Start the Visual Studio MVC project (CTRL + F5), then create a new file in your folder called `test01.js`
+
+
+````javascript
+casper.test.begin('Home Page Tests', 3, function (test) {
+
+   casper.start("http://localhost:43502", function () {
+      test.assertTitle("Home - CasperJS Mvc");
+      test.assertTextExists("Casper MVC", "Casper MVC is present on page");
+      test.assertTextExists("Ariya Hidayat", "Ariya Hidayat is present on page");
+   });
+
+   casper.run(function () {
+      test.done();
+   });
+});
+````
+
+Now run:-
+
+````bat
+$ casperjs test test01.js
+````
+
+You should get 3 passing tests
+
+---
+
+#Test 01 - Our first test
+
+## What did we just do?##
+
+* notice that the test scripts are slightly different to scraping scripts
+
+* we do not need to create a new casper instance (allows us to chain tests)
+
+* we opened http://localhost:43502
+
+* when the page loaded, we asserted the title was `Home - CasperJS Mvc`
+
+* we then asserted that two pieces of text existed
+
+* we ran the tests and informed CasperJS we were done 
+
+---
+
+#Test 02 - Navigation test
+
+## TIP for Chrome users
+
+###CSS Selector Tester
+
+Test your css selector by using this quick script
+
+[Css Selector Tester](https://chrome.google.com/webstore/detail/css-selector-tester/bbklnaodgoocmcdejoalmbjihhdkbfon)
+
+On the home page try out 
+
+`````css
+ul > li:nth-child(2) > a
+`````
+
+OR
+
+````css
+a[href='/home/about']
+````
+
+---
+
+
+#Test 02 - Navigation test
+
+Create a new file called `test02.js`
+
+````javascript
+casper.test.begin('Home and About Page', 4, function (test) {
+
+  casper.start("http://localhost:43502/", function () {
+      test.assertTitle("Home - CasperJS Mvc");
+      test.assertTextExists("Casper MVC", "Casper MVC is present on page");
+  });
+
+  casper.thenClick('ul > li:nth-child(2) > a', function () {
+      test.assertUrlMatch(/home\/about/, "URL ends with home/about");
+      test.assertTitle("About - CasperJS Mvc");
+  });
+
+  casper.run(function () {
+      test.done();
+  });
+});
+````
+
+Now run:-
+
+````bat
+$ casperjs test test02.js
+````
+
+You should get 4 passing tests
+
+---
+
+#Test 03 - Fill in a form
+
+Copy `\_test_template.js` and rename to `test03.js`, we want 5 tests for the contact form:-
+
+* start with `casper.start('http://localhost:43502/home/contact');`
+* assert the title is correct
+* assert the form exists
+* submit the form with just the name filled in
+* assert an error comes back
+* submit the form with an invalid email address
+* assert an error comes back
+* submit the form with an valid email address
+* assert we are showing the thank you page
+
+#### Spoiler alert...
+
+````javascript
+// assert a selector exists
+test.assertExists('form[action="/home/contact"]');
+
+// fill in a form, note use fillSelectors NOT deprecated fill 
+this.fillSelectors('form', {
+    "input[name='ContactName']": 'Richard Wilde'
+}, true);
+
+// waits for a selector after a button has been clicked
+casper.waitForSelector('#EmailAddress', ...
+
+````
+
+---
+
+#Test 04 - UI Timings
+
+Copy `\_test_template.js` and rename to `test04.js`, we want to test the visibility of the modal window:-
+
+* start with `casper.start('http://localhost:43502/Timings');`
+* assert button exists
+* click the button
+* capture the screen
+* assert modal window is visible
+
+#### Spoiler alert...
+
+````javascript
+// does a selector exist?
+test.assertExists("button#btnModal", "Launch button is shown");
+
+// lets wait for some milliseconds...
+casper.wait(10, ...
+
+// is a selector visible?
+test.assertVisible("#myModal");
+````
+
+---
+
+#Test 05 - Evaluate
+
+Copy `\_test_template.js` and rename to `test05.js`, we want to test the modal window:-
+
+* start with `http://localhost:43502/Evaluate`
+* change the dropdown list to `United Kingdom`
+* assert the text exists `Selepcted country code: UK`
+* change the dropdown list to `Spain`
+* assert the text exists `Selected country code: ES`
+
+#### Spoiler alert...
+
+````javascript
+// run some javacript/jquery code
+casper.thenEvaluate(...
+````
+
+You should get 2 passing tests
+
+---
+
+#Test 06 - Looping
+
+Copy `\_test_template.js` and rename to `test06.js`, we want to test the wizard:-
+
+* set up an array of 50 integers
+* start with `http://localhost:43502/wizard/index/1`
+* loop through array
+   * assert title is `Wizard Step: **i** - CasperJS Mvc  
+   * submit form without filling in field
+   * assert validation message is shown
+   * submit form with any answer
+* assert finished page is shown
+
+#### Spoiler alert...
+
+````javascript
+//  should the loop be inside a casper function?
+casper.then ...
+ loop.forEach(function (item) ...
+
+````
+
+You should get 101 passing tests
+
+
+---
+
+#and finally...
+
+- ##Run all tests in a directory
+
+````bat
+$ casperjs test ./tests/test.samples
+````
+
+---
+
+#If you have time
+
+##Check out the page object pattern...
+
+````bat
+casperjs --baseUrl="http://localhost:43502" test ./tests/page.object.pattern/tests
+````
+
+  - https://code.google.com/p/selenium/wiki/PageObjects
+  - http://martinfowler.com/bliki/PageObject.html
+ 
+``Within your web app's UI there are areas that your tests interact with. A Page Object simply models these as objects within the test code. This reduces the amount of duplicated code and means that if the UI changes, the fix need only be applied in one place``
+
+---
+
+#Check out these useful tools
+
+* ####Resurretco (chrome extension)
+   - Resurrectio is a Chrome extension allowing to record a sequence of browser actions and to produce the corresponding CasperJS script
+   - https://github.com/ebrehault/resurrectio
+
+* ####CSS Selector Tester (chrome extension)
+   - Test your css selector by using this quick script
+   - http://tinyurl.com/chrome-css-selector
+
+* ####Page Object Pattern
+  - http://jsebfranck.blogspot.co.uk/2014/03/page-object-pattern-with-casperjs.html
+
+---
+
+class: center, middle
+
+#Thanks
+
+##Hope you found it useful
+
+Ask me questions on twitter @rippo
+    </textarea>
+    <script src="http://gnab.github.io/remark/downloads/remark-latest.min.js" type="text/javascript">
+    </script>
+    <script type="text/javascript">
+      var slideshow = remark.create({  highlightStyle: 'monokai'});
+    </script>
+  </body>
+</html>
