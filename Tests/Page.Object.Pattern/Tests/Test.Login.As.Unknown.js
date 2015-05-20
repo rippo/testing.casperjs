@@ -1,3 +1,5 @@
+/// <reference path="../Pages/Page.Login.js" />
+
 phantom.page.injectJs('../Pages/Page.Login.js');
 
 var loginPage = new LoginPage();

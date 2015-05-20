@@ -1,3 +1,6 @@
+/// <reference path="../Pages/Page.Login.js" />
+/// <reference path="../Pages/Page.Account.js" />
+
 phantom.page.injectJs('../Pages/Page.Login.js');
 phantom.page.injectJs('../Pages/Page.Account.js');
 
