@@ -90,29 +90,38 @@ When you get stuck check out the API documentation http://docs.casperjs.org/en/l
 2. Open CMD prompt and install CasperJS (it bundles PhantomJs)
 ````bat
 $ npm install casperjs -g
-````
-````bat
 $ notepad %APPDATA%\npm\casperjs.cmd
 ````
 Goto http://tinyurl.com/casper-cmd and paste in the text and save
 
-4. Check casper is installed, it should return `1.1.0-beta3`.
+3. Check casper is installed, it should return `1.1.0-beta3`.
 ````bat
 $ casperjs --version
 ````
 
-5. In CMD create folder and CD to it (any name, any where like Martini but not)
-
-6. Get demo project from GitHub
+4. In CMD create folder on your drive and CD to it (any name, any where almost like Martini) and then get the demo project from GitHub
 ````bat
 $ git clone https://github.com/rippo/testing.casperjs.git
 ````
+        
+6. To remove the unsafe js warning, downgrade phantomjs 1.9.8 to 1.9.7. Copy phantom.exe from the GIT root folder into the folder below 
+````bat
+$ explorer %APPDATA%\npm\node_modules\casperjs\node_modules\phantomjs\lib\phantom         
+````
 
-7. Open SLN `.\testing.casperjs\Casper.Mvc\Casper.Mvc.sln`,
-
-        RUN -> ***QUICK TOUR***
 ---
+#The Website        
+    
+1. Open SLN `.\Casper.Mvc\Casper.Mvc.sln`
+        
+2. Hit CTRL + F5        
+        
+3. For those who don't have VS then you can see the site at 
 
+    http://casper-testing.azurewebsites.net/        
+        
+---
+        
 #Exercise 1 - Screen Grab
 
 Create a new file called grab.js
