@@ -1,0 +1,105 @@
+- trigger: cspfulltest
+  description: Casper test suite full
+  scope: javascript
+  mTime: 1429118941818
+  text: |
+        casper.test.begin('${1:Test description}', ${2:2}, {
+            setUp: function(test) {
+                ${3:// setup instructions...}
+            },
+        
+            tearDown: function(test) {
+                ${4:// tear down instructions...}
+            },
+        
+            test: function(test) {
+                ${5:// tests}
+                test.done();
+            }
+        });
+
+- trigger: csptest
+  description: Casper Test
+  scope: javascript
+  mTime: 1429118995843
+  text: |
+        casper.test.begin('${1:Test description}', ${2:2}, function(test) {
+            casper.start('${3:http://}', function() {
+                test.assertTitle('${4:First title}');
+            });
+        
+            casper.thenOpen('${5:http://}', function() {
+                test.assertTitle('${6:Second title}');
+            });
+        
+            casper.run(function() {
+                test.done();
+            });
+        });
+
+- scope: javascript
+  trigger: csp-po-login
+  description: Casper Page Object Login
+  mTime: 1429119810855
+  text: |
+        function LoginPage() {
+        
+            this.startOnLoginPage = function () {
+                //casper.echo("base url is : " + casper.cli.options.baseUrl);
+                casper.start(casper.cli.options.baseUrl + '/account');
+            };
+        
+            this.fullLogin = function(username, password) {
+                this.startOnLoginPage();
+                this.checkPage();
+                this.fillForm(username, password);
+                this.submitForm();
+            };
+        
+        
+            this.checkPage = function () {
+                casper.waitForSelector("#Username", function () {
+                    casper.test.assertUrlMatch('account', 'is on login page');
+                    casper.test.assertExists('form', 'login page form has been found');
+                });
+            };
+        
+            this.fillForm = function (username, password) {
+                casper.waitForSelector("#Username", function () {
+                    casper.fillSelectors('form', {
+                        "input[name='Username']": username,
+                        "input[name='Password']": password,
+                    }, false);
+                });
+            };
+        
+            this.submitForm = function () {
+                casper.then(function () {
+                    casper.click('form input[type="submit"]', 'login submit button clicked');
+                });
+            };
+        
+            this.checkUsernameValidation = function() {
+                casper.waitForSelector("#Username", function () {
+                    casper.test.assertTextExists("The Username field is required", "username required message shown");
+                });
+            }
+        
+            this.checkPasswordValidation = function () {
+                casper.waitForSelector("#Username", function () {
+                    casper.test.assertTextExists("The Password field is required", "password required message shown");
+                });
+            }
+        
+        }
+
+- trigger: cspfills
+  description: Casper Fill Selector
+  scope: javascript
+  mTime: 1429120058623
+  text: |
+        ${1:this}.fillSelectors('${2:form}', {
+            "input[name='${3:1st-field-selector}'": '${4:value}',
+            "input[name='${5:2nd-field-selector}'": '${6:value}'
+        }, ${7:true});
+
