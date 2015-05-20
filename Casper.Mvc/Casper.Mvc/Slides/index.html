@@ -129,13 +129,13 @@ Create a new file called grab.js
 ````javascript
 var casper = require('casper').create();
 
-casper.start('http://craftycoders.net', function () {
+casper.start('http://www.wildesoft.net', function () {
     this.echo(this.getTitle());
 });
 
-casper.thenOpen('http://www.meetup.com/Crafty-Coders', function () {
+casper.thenOpen('http://www.meetup.com/Smart-Devs-User-Group', function () {
     this.echo(this.getTitle());
-    this.capture("crafty.jpg");
+    this.capture("meetup.jpg");
 });
 
 casper.run();
@@ -161,11 +161,11 @@ Was a file called `meetup.jpg` created?
 
 * we created a new Casper instance
 
-* we started it and opened http://craftycoders.net
+* we started it and opened http://www.wildesoft.net
 
 * once the page has loaded, we printed the title of the webpage (the content of its `<title>` tag)
 
-* then we opened another url, http://www.meetup.com/Crafty-Coders
+* then we opened another url, http://www.meetup.com/Smart-Devs-User-Group
 
 * once the new page has loaded, we asked to print its title too
 
